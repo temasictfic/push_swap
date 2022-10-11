@@ -12,6 +12,7 @@ int main(int ac, char **av)
 {
     t_stack		*stack_a;
     t_stack     *stack_b;
+    char        *inst;
 
     if (ac < 2)
 		return (0);
@@ -26,10 +27,18 @@ int main(int ac, char **av)
     //   is incorrectly formatted.
 
     exit_error(NULL, NULL);
-    
+
+    inst = get_next_line(); 
     // execute instructions if they valid
+
+        
+
+
     if (is_sorted(stack_a) && get_stack_size(stack_b) == 0)
         ft_putstr("OK\n");
     else
         ft_putstr("KO\n");
+    free_stack(&stack_a);
+    free_stack(&stack_b);
+    return (0);
 }
