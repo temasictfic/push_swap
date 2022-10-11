@@ -1,5 +1,13 @@
 #include "push_swap.h"
 
+void	exit_error(t_stack **stack_a, t_stack **stack_b)
+{
+	free_stack(stack_a);
+	free_stack(stack_b);
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
 int main(int ac, char **av)
 {
     t_stack		*stack_a;
