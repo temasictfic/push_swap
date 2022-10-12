@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -O0 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 NAME = push_swap
@@ -38,10 +38,9 @@ libft:
 
 clean:
 	$(RM) $(OBJS) $(BOBJS)
-	make -C libft clean
 
 fclean: clean
-	$(RM) ${NAME} ${NAME_CHECKER} libft/libft.a
+	$(RM) ${NAME} ${NAME_CHECKER}
 
 re: fclean all
 

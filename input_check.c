@@ -56,7 +56,7 @@ static int	has_duplicate(char **str)
 		j = 1;
 		while (str[j])
 		{
-			if (i != j && !num_strcmp(str[i], str[j]))
+			if (i != j && num_strcmp(str[i], str[j]) == 0)
 				return (1);
 			j++;
 		}

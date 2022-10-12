@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 /*
-**		value:			3	 0	 9	 1
+**		value:		 3	 0	 9	 1
 **		order:		[3]	[1]	[4]	[2]
 **		index:		<0>	<1>	<2>	<3>
 */
@@ -26,8 +26,9 @@ static void	get_index(t_stack **stack)
 	i = 0;
 	while (tmp)
 	{
-		tmp->index = i++;
+		tmp->index = i;
 		tmp = tmp->next;
+		i++;
 	}
 }
 

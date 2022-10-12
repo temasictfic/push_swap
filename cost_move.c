@@ -92,16 +92,14 @@ void	move_cheapest(t_stack **stack_a, t_stack **stack_b)
 	int		cheapest;
 	int		cost_a;
 	int		cost_b;
-	int		total_cost;
 
 	tmp = *stack_b;
 	cheapest = INT_MAX;
 	while (tmp)
 	{
-		total_cost = ft_abs(tmp->cost_a) + ft_abs(tmp->cost_b);
-		if (total_cost < ft_abs(cheapest))
+		if (ft_abs(tmp->cost_a) + ft_abs(tmp->cost_b) < cheapest)
 		{
-			cheapest = total_cost;
+			cheapest = ft_abs(tmp->cost_a) + ft_abs(tmp->cost_b);
 			cost_a = tmp->cost_a;
 			cost_b = tmp->cost_b;
 		}

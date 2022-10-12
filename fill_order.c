@@ -41,7 +41,7 @@ t_stack	*fill_stack_a(int ac, char **av)
 /*
 ** Assign an number to each value in stack_a
 ** Lowast gets 1 and highest gets stack_size
-**		values:		-3		0	 9	 2
+**		values:		-3	 0	 9	 2
 **		order:		[1]	[2]	[4]	[3]
 */
 void	assign_order(t_stack *stack_a, int stack_size)

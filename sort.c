@@ -50,7 +50,7 @@ static void	push_all_but_three(t_stack **stack_a, t_stack **stack_b)
 	stack_size = get_stack_size(*stack_a);
 	pushed = 0;
 	i = 0;
-	while ((stack_size > 6) && (i++ < stack_size) && (pushed < stack_size / 2))
+	while (stack_size > 6 && i < stack_size && pushed < stack_size / 2)
 	{
 		if ((*stack_a)->order <= stack_size / 2)
 		{
@@ -59,9 +59,13 @@ static void	push_all_but_three(t_stack **stack_a, t_stack **stack_b)
 		}
 		else
 			rotate(stack_a, NULL, "ra", 0);
+		i++;
 	}
-	while ((stack_size - pushed++) > 3)
+	while (stack_size - pushed > 3)
+	{
 		push(stack_a, stack_b, "pb");
+		pushed++;
+	}
 }
 
 static void	rotate_sort(t_stack **stack_a)
@@ -73,13 +77,19 @@ static void	rotate_sort(t_stack **stack_a)
 	lowest_index = get_lowest_order_index(stack_a);
 	if (lowest_index > stack_size / 2)
 	{
-		while (lowest_index++ < stack_size)
+		while (lowest_index < stack_size)
+		{
 			rev_rotate(stack_a, NULL, "rra", 0);
+			lowest_index++;
+		}
 	}
 	else
 	{
-		while (lowest_index-- > 0)
+		while (lowest_index > 0)
+		{
 			rotate(stack_a, NULL, "ra", 0);
+			lowest_index--;
+		}
 	}
 }
 
