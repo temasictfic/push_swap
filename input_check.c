@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:45:27 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/13 22:14:30 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 01:46:06 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	has_duplicate(char **str)
 		j = 1;
 		while (str[j])
 		{
-			if (i != j && num_strcmp(str[i], str[j]) == 0)
+			if (j != i && num_strcmp(str[i], str[j]) == 0)
 				return (1);
 			j++;
 		}

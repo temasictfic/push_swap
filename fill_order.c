@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 03:23:39 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/13 18:52:50 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 02:05:41 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	exit_error(t_stack **stack_a, t_stack **stack_b)
 {
-	free_stack(stack_a);
-	free_stack(stack_b);
+	if (stack_a == NULL || *stack_a != NULL)
+		free_stack(stack_a);
+	if (stack_b == NULL || *stack_b != NULL)
+		free_stack(stack_b);
 	write(2, "Error\n", 6);
 	exit(1);
 }

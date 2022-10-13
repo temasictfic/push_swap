@@ -6,14 +6,14 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:46:24 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/13 22:57:22 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 02:17:03 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl/gnl.h"
+#include "gnl/get_next_line.h"
 #include "push_swap.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	cursor;
 
@@ -29,7 +29,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (((unsigned char *)s1)[cursor] - ((unsigned char *)s2)[cursor]);
 }
 
-int	is_valid_cmd(char *cmd)
+static int	is_valid_cmd(char *cmd)
 {
 	if (!cmd)
 		return (1);
@@ -54,7 +54,7 @@ int	is_valid_cmd(char *cmd)
 	return (0);
 }
 
-void	execute_cmd(t_stack **stack_a, t_stack **stack_b, char *cmd)
+static void	execute_cmd(t_stack **stack_a, t_stack **stack_b, char *cmd)
 {
 	if (cmd == NULL)
 		return ;
@@ -82,7 +82,7 @@ void	execute_cmd(t_stack **stack_a, t_stack **stack_b, char *cmd)
 		push(stack_a, stack_b, NULL);
 }
 
-void	wait_for_input(t_stack *stack_a, t_stack *stack_b)
+static void	wait_for_input(t_stack *stack_a, t_stack *stack_b)
 {
 	char	*inst;
 

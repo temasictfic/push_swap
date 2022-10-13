@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 05:05:22 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/13 15:24:29 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 01:30:28 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	rotate_one(t_stack **stack, int cost, char *r, char *rr)
 	}
 }
 
-void	move(t_stack **stack_a, t_stack **stack_b, int cost_a, int cost_b)
+static void	move(t_stack **stack_a, t_stack **stack_b, int cost_a, int cost_b)
 {
 	rotate_both(stack_a, stack_b, cost_a, cost_b);
 	rotate_one(stack_a, cost_a, "ra", "rra");

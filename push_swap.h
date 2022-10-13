@@ -6,16 +6,16 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 21:44:17 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/13 17:39:49 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 01:31:15 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <limits.h>
 
 typedef struct s_stack
 {
@@ -47,10 +47,6 @@ void				assign_target_index(t_stack **stack_a, t_stack **stack_b);
 
 void				get_cost(t_stack **stack_a, t_stack **stack_b);
 void				move_cheapest(t_stack **stack_a, t_stack **stack_b);
-
-/* Move */
-
-void				move(t_stack **a, t_stack **b, int cost_a, int cost_b);
 
 /* Instructions */
 
