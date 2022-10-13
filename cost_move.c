@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 05:05:22 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 01:30:28 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 02:49:41 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,51 +40,51 @@ void	get_cost(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-static void	rotate_both(t_stack **stack_a, t_stack **stack_b, int cost_a,
-		int cost_b)
+static void	rotate_both(t_stack **stack_a, t_stack **stack_b, int *cost_a,
+		int *cost_b)
 {
-	if (cost_a < 0 && cost_b < 0)
+	if (*cost_a < 0 && *cost_b < 0)
 	{
-		while (cost_a < 0 && cost_b < 0)
+		while (*cost_a < 0 && *cost_b < 0)
 		{
-			cost_a++;
-			cost_b++;
+			(*cost_a)++;
+			(*cost_b)++;
 			rev_rotate(stack_a, stack_b, "rrr", 1);
 		}
 	}
-	else if (cost_a > 0 && cost_b > 0)
+	else if (*cost_a > 0 && *cost_b > 0)
 	{
-		while (cost_a > 0 && cost_b > 0)
+		while (*cost_a > 0 && *cost_b > 0)
 		{
-			cost_a--;
-			cost_b--;
+			(*cost_a)--;
+			(*cost_b)--;
 			rotate(stack_a, stack_b, "rr", 1);
 		}
 	}
 }
 
-static void	rotate_one(t_stack **stack, int cost, char *r, char *rr)
+static void	rotate_one(t_stack **stack, int *cost, char *r, char *rr)
 {
-	while (cost)
+	while (*cost)
 	{
-		if (cost > 0)
+		if (*cost > 0)
 		{
 			rotate(stack, NULL, r, 0);
-			cost--;
+			(*cost)--;
 		}
-		else if (cost < 0)
+		else if (*cost < 0)
 		{
 			rev_rotate(stack, NULL, rr, 0);
-			cost++;
+			(*cost)++;
 		}
 	}
 }
 
 static void	move(t_stack **stack_a, t_stack **stack_b, int cost_a, int cost_b)
 {
-	rotate_both(stack_a, stack_b, cost_a, cost_b);
-	rotate_one(stack_a, cost_a, "ra", "rra");
-	rotate_one(stack_b, cost_b, "rb", "rrb");
+	rotate_both(stack_a, stack_b, &cost_a, &cost_b);
+	rotate_one(stack_a, &cost_a, "ra", "rra");
+	rotate_one(stack_b, &cost_b, "rb", "rrb");
 	push(stack_b, stack_a, "pa");
 }
 
