@@ -18,30 +18,23 @@ NAME = push_swap
 NAME_CHECKER = checker
 
 SRCS = 	push_swap.c input_check.c index.c sort.c stack.c fill_order.c cost_move.c instructions.c utils.c
-BSRC =  checker.c fill_order.c instructions.c stack.c utils.c input_check.c
-
-OBJS = $(SRCS:.c=.o)
-BOBJS = $(BSRC:.c=.o)
+BSRC =  checker.c fill_order.c instructions.c stack.c utils.c input_check.c gnl/gnl.c gnl/gnl_utils.c
 
 all: ${NAME}
 
 bonus: ${NAME} ${NAME_CHECKER}
 
-${NAME}: $(OBJS)
-	${CC} ${CFLAGS} -o $@ $(OBJS) 
+${NAME}:
+	${CC} ${CFLAGS} -o ${NAME}
 
-${NAME_CHECKER}: $(BOBJS) libft
-	${CC} ${CFLAGS} -o $@ $(BOBJS) -Llibft -lft
-
-libft:
-	make -C libft bonus
+${NAME_CHECKER}:
+	${CC} ${CFLAGS} -o ${NAME_CHECKER} -I gnl/gnl.h
 
 clean:
-	$(RM) $(OBJS) $(BOBJS)
 
 fclean: clean
 	$(RM) ${NAME} ${NAME_CHECKER}
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+.PHONY: all bonus clean fclean re
