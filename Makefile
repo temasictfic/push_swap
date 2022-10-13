@@ -6,7 +6,7 @@
 #    By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 22:11:09 by sciftci           #+#    #+#              #
-#    Updated: 2022/10/11 05:06:35 by sciftci          ###   ########.fr        #
+#    Updated: 2022/10/13 17:55:23 by sciftci          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,4 +37,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+reb: fclean bonus
+
+.PHONY: all bonus clean fclean re reb

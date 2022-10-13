@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:48:09 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/10 15:29:11 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/13 14:38:14 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ long int	ft_atoi(const char *str)
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
-		num = (num * 10) + (str[i++] - '0');
+	{
+		num = (num * 10) + (str[i] - '0');
+		i++;
+	}
 	return (num * sign);
 }
 

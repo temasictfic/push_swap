@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 03:30:10 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/10 18:43:54 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/13 17:52:24 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ void	rev_rotate(t_stack **stack_a, t_stack **stack_b, char *cmd, int flag)
 	*stack_a = tail;
 	(*stack_a)->next = tmp;
 	before_tail->next = NULL;
-	if (cmd[2] == 'r' && flag)
+	if (flag)
 		return (rev_rotate(stack_b, NULL, cmd, 0));
-	ft_putstr(cmd);
-	ft_putstr("\n");
+	if (cmd)
+	{
+		ft_putstr(cmd);
+		ft_putstr("\n");
+	}
 }
 
 void	rotate(t_stack **stack_a, t_stack **stack_b, char *cmd, int flag)
@@ -40,10 +43,13 @@ void	rotate(t_stack **stack_a, t_stack **stack_b, char *cmd, int flag)
 	tail = get_stack_bottom(*stack_a);
 	tmp->next = NULL;
 	tail->next = tmp;
-	if (cmd[1] == 'r' && flag)
+	if (flag)
 		return (rotate(stack_b, NULL, cmd, 0));
-	ft_putstr(cmd);
-	ft_putstr("\n");
+	if (cmd)
+	{
+		ft_putstr(cmd);
+		ft_putstr("\n");
+	}
 }
 
 void	swap(t_stack **stack_a, t_stack **stack_b, char *cmd, int flag)
@@ -56,10 +62,13 @@ void	swap(t_stack **stack_a, t_stack **stack_b, char *cmd, int flag)
 	(*stack_a)->next = tmp->next;
 	tmp->next = *stack_a;
 	*stack_a = tmp;
-	if (cmd[1] == 's' && flag)
+	if (flag)
 		return (swap(stack_b, NULL, cmd, 0));
-	ft_putstr(cmd);
-	ft_putstr("\n");
+	if (cmd)
+	{
+		ft_putstr(cmd);
+		ft_putstr("\n");
+	}
 }
 
 void	push(t_stack **src, t_stack **dest, char *cmd)
@@ -72,6 +81,9 @@ void	push(t_stack **src, t_stack **dest, char *cmd)
 	(*src)->next = *dest;
 	*dest = *src;
 	*src = tmp;
-	ft_putstr(cmd);
-	ft_putstr("\n");
+	if (cmd)
+	{
+		ft_putstr(cmd);
+		ft_putstr("\n");
+	}
 }

@@ -6,11 +6,19 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 03:23:39 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/11 03:54:52 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/13 18:52:50 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	exit_error(t_stack **stack_a, t_stack **stack_b)
+{
+	free_stack(stack_a);
+	free_stack(stack_b);
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
 /*
 ** Fill stack_a with arg values
@@ -24,8 +32,8 @@ t_stack	*fill_stack_a(int ac, char **av)
 
 	stack_a = NULL;
 	num = 0;
-	i = 0;
-	while (++i < ac)
+	i = 1;
+	while (i < ac)
 	{
 		num = ft_atoi(av[i]);
 		if (num > INT_MAX || num < INT_MIN)
@@ -34,6 +42,7 @@ t_stack	*fill_stack_a(int ac, char **av)
 			stack_a = stack_new((int)num);
 		else
 			stack_add_bottom(&stack_a, stack_new((int)num));
+		i++;
 	}
 	return (stack_a);
 }
@@ -41,7 +50,7 @@ t_stack	*fill_stack_a(int ac, char **av)
 /*
 ** Assign an number to each value in stack_a
 ** Lowast gets 1 and highest gets stack_size
-**		values:		-3	 0	 9	 2
+**		values:		-3		0		9	 2
 **		order:		[1]	[2]	[4]	[3]
 */
 void	assign_order(t_stack *stack_a, int stack_size)

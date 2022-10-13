@@ -6,16 +6,16 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 21:44:17 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/10 13:22:37 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/13 17:39:49 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_stack
 {
