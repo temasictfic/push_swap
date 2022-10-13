@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:45:27 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/13 15:07:45 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/13 22:14:30 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@ static int	is_num(char *str)
 	int	i;
 
 	i = 0;
+	if ((int)(str[i]) == 0)
+		return (0);
 	if ((str[i] == '+' || str[i] == '-') && str[i + 1] != '\0')
 		i++;
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))

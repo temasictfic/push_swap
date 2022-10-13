@@ -6,18 +6,16 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:46:24 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/13 20:44:52 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/13 22:57:22 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl/gnl.h"
 #include "push_swap.h"
-#include <stdio.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	cursor;
-	int		total;
 
 	if (n == 0)
 		return (0);
@@ -28,22 +26,32 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 			break ;
 		cursor++;
 	}
-	total = ((unsigned char *)s1)[cursor] - ((unsigned char *)s2)[cursor];
-	if (total != 0)
-		return (1);
-	return (total);
+	return (((unsigned char *)s1)[cursor] - ((unsigned char *)s2)[cursor]);
 }
 
 int	is_valid_cmd(char *cmd)
 {
 	if (!cmd)
 		return (1);
-	return (!ft_strncmp("rrr", cmd, 3) || !ft_strncmp("rra", cmd, 3)
-		|| !ft_strncmp("rrb", cmd, 3) || !ft_strncmp("rr", cmd, 2)
-		|| !ft_strncmp("ra", cmd, 2) || !ft_strncmp("rb", cmd, 2)
-		|| !ft_strncmp("ss", cmd, 2) || !ft_strncmp("sa", cmd, 2)
-		|| !ft_strncmp("sb", cmd, 2) || !ft_strncmp("pa", cmd, 2)
-		|| !ft_strncmp("pb", cmd, 2));
+	if (ft_strlen(cmd) == 4)
+	{
+		if (ft_strncmp("rrr", cmd, 3) == 0 || ft_strncmp("rra", cmd, 3) == 0
+			|| ft_strncmp("rrb", cmd, 3) == 0)
+		{
+			return (1);
+		}
+	}
+	else if (ft_strlen(cmd) == 3)
+	{
+		if (ft_strncmp("rr", cmd, 2) == 0 || ft_strncmp("ra", cmd, 2) == 0
+			|| ft_strncmp("rb", cmd, 2) == 0 || ft_strncmp("ss", cmd, 2) == 0
+			|| ft_strncmp("sa", cmd, 2) == 0 || ft_strncmp("sb", cmd, 2) == 0
+			|| ft_strncmp("pa", cmd, 2) == 0 || ft_strncmp("pb", cmd, 2) == 0)
+		{
+			return (1);
+		}
+	}
+	return (0);
 }
 
 void	execute_cmd(t_stack **stack_a, t_stack **stack_b, char *cmd)
@@ -74,18 +82,10 @@ void	execute_cmd(t_stack **stack_a, t_stack **stack_b, char *cmd)
 		push(stack_a, stack_b, NULL);
 }
 
-int	main(int ac, char **av)
+void	wait_for_input(t_stack *stack_a, t_stack *stack_b)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
 	char	*inst;
 
-	if (ac < 2)
-		return (0);
-	if (!is_valid_input(av))
-		exit_error(NULL, NULL);
-	stack_a = fill_stack_a(ac, av);
-	stack_b = NULL;
 	while (1)
 	{
 		inst = get_next_line(STDIN_FILENO);
@@ -97,15 +97,28 @@ int	main(int ac, char **av)
 		else if (!is_valid_cmd(inst))
 			exit_error(&stack_a, &stack_b);
 		execute_cmd(&stack_a, &stack_b, inst);
-		if (is_sorted(stack_a) && get_stack_size(stack_b) == 0)
+		if (!inst && is_sorted(stack_a) && get_stack_size(stack_b) == 0)
 		{
 			ft_putstr("OK\n");
 			break ;
 		}
 		free(inst);
 	}
+}
+
+int	main(int ac, char **av)
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+
+	if (ac < 2)
+		return (0);
+	if (!is_valid_input(av))
+		exit_error(NULL, NULL);
+	stack_a = fill_stack_a(ac, av);
+	stack_b = NULL;
+	wait_for_input(stack_a, stack_b);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
-	system("leaks checker");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 03:30:10 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/13 17:52:24 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 01:05:44 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	rev_rotate(t_stack **stack_a, t_stack **stack_b, char *cmd, int flag)
 	t_stack	*tail;
 	t_stack	*before_tail;
 
+	if (get_stack_size(*stack_a) < 2)
+		return ;
 	tail = get_stack_bottom(*stack_a);
 	before_tail = get_stack_before_bottom(*stack_a);
 	tmp = *stack_a;
@@ -38,6 +40,8 @@ void	rotate(t_stack **stack_a, t_stack **stack_b, char *cmd, int flag)
 	t_stack	*tmp;
 	t_stack	*tail;
 
+	if (get_stack_size(*stack_a) < 2)
+		return ;
 	tmp = *stack_a;
 	*stack_a = (*stack_a)->next;
 	tail = get_stack_bottom(*stack_a);
