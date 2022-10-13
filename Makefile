@@ -18,17 +18,17 @@ NAME = push_swap
 NAME_CHECKER = checker
 
 SRCS = 	push_swap.c input_check.c index.c sort.c stack.c fill_order.c cost_move.c instructions.c utils.c
-BSRC =  checker.c fill_order.c instructions.c stack.c utils.c input_check.c gnl/gnl.c gnl/gnl_utils.c
+BSRCS =  checker.c fill_order.c instructions.c stack.c utils.c input_check.c gnl/gnl.c gnl/gnl_utils.c
 
 all: ${NAME}
 
 bonus: ${NAME} ${NAME_CHECKER}
 
 ${NAME}:
-	${CC} ${CFLAGS} -o ${NAME}
+	${CC} ${CFLAGS} ${SRCS} -o ${NAME}
 
 ${NAME_CHECKER}:
-	${CC} ${CFLAGS} -o ${NAME_CHECKER} -I gnl/gnl.h
+	${CC} ${CFLAGS} ${BSRCS} -o ${NAME_CHECKER} 
 
 clean:
 

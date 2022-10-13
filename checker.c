@@ -91,20 +91,21 @@ int main(int ac, char **av)
     while (1)
     {
         inst = get_next_line(STDIN_FILENO);
-        if (inst == NULL)
+        if (inst == NULL && !(is_sorted(stack_a) && get_stack_size(stack_b) == 0))
         {
             ft_putstr("KO\n");
             break;
         }
-        else if (!is_valid_cmd(inst))
-            exit_error(&stack_a, &stack_b);
-        execute_cmd(stack_a, stack_b, inst);
-        if (is_sorted(stack_a) && get_stack_size(stack_b) == 0)
+        else if (is_sorted(stack_a) && get_stack_size(stack_b) == 0)
         {
             ft_putstr("OK\n");
             break;
         }
+        else if (!is_valid_cmd(inst))
+            exit_error(&stack_a, &stack_b);
+        execute_cmd(&stack_a, &stack_b, inst);
     }
+    free(inst);
     free_stack(&stack_a);
     free_stack(&stack_b);
     return (0);
