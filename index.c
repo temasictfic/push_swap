@@ -6,14 +6,14 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 02:44:50 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 11:58:08 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 12:00:29 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*  leftmost is top (value 3)
-**		value:		 3	 0	 9	 1
+**		value:			3	 0	 9	 1
 **		order:		[3]	[1]	[4]	[2]
 **		index:		<0>	<1>	<2>	<3>
 */
@@ -62,7 +62,8 @@ int	get_lowest_order_index(t_stack **stack)
 **	an element in stack_b. First checks if the order of stack_b element can
 **	be placed somewhere in between elements in stack_a, by checking whether
 **	there is an element in stack_a with a bigger order. If not, it finds the
-**	element with the smallest order in stack_a and assigns that as the target_index.
+**	element with the smallest order in stack_a and assigns that 
+**	as the target_index.
 **	--- Example:
 **		target_index starts at INT_MAX
 **		B order: 3
