@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:45:27 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 01:46:06 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 11:25:58 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@ static int	is_num(char *str)
 	int	i;
 
 	i = 0;
-	if ((int)(str[i]) == 0)
-		return (0);
-	if ((str[i] == '+' || str[i] == '-') && str[i + 1] != '\0')
+	if ((str[i] == '+' || str[i] == '-') && str[i + 1])
 		i++;
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
-		i++;
-	if (str[i] != '\0' && !(str[i] >= '0' && str[i] <= '9'))
+	if (str[i] == 0)
 		return (0);
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
@@ -34,16 +36,10 @@ static int	num_strcmp(const char *s1, const char *s2)
 	i = 0;
 	j = 0;
 	if (s1[i] == '+')
-	{
-		if (s2[j] != '+')
-			i++;
-	}
-	else
-	{
-		if (s2[j] == '+')
-			j++;
-	}
-	while (s1[i] != '\0' && s2[j] != '\0' && s1[i] == s2[j])
+		i++;
+	if (s2[j] == '+')
+		j++;
+	while (s1[i] && s2[j] && s1[i] == s2[j])
 	{
 		i++;
 		j++;
@@ -78,7 +74,7 @@ static int	is_zero(char *str)
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
-	while (str[i] && str[i] == '0')
+	while (str[i] == '0')
 		i++;
 	if (str[i] != '\0')
 		return (0);

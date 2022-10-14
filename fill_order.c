@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 03:23:39 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 02:05:41 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 11:35:22 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	exit_error(t_stack **stack_a, t_stack **stack_b)
 {
-	if (stack_a == NULL || *stack_a != NULL)
-		free_stack(stack_a);
-	if (stack_b == NULL || *stack_b != NULL)
-		free_stack(stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
 	write(2, "Error\n", 6);
 	exit(1);
 }
@@ -34,17 +32,16 @@ t_stack	*fill_stack_a(int ac, char **av)
 
 	stack_a = NULL;
 	num = 0;
-	i = 1;
-	while (i < ac)
+	i = 0;
+	while (++i < ac)
 	{
 		num = ft_atoi(av[i]);
 		if (num > INT_MAX || num < INT_MIN)
 			exit_error(&stack_a, NULL);
-		if (i == 1)
-			stack_a = stack_new((int)num);
-		else
+		if (i > 1)
 			stack_add_bottom(&stack_a, stack_new((int)num));
-		i++;
+		else
+			stack_a = stack_new((int)num);
 	}
 	return (stack_a);
 }
@@ -52,7 +49,7 @@ t_stack	*fill_stack_a(int ac, char **av)
 /*
 ** Assign an number to each value in stack_a
 ** Lowast gets 1 and highest gets stack_size
-**		values:		-3		0		9	 2
+**		values:		-3	 0	 9	 2
 **		order:		[1]	[2]	[4]	[3]
 */
 void	assign_order(t_stack *stack_a, int stack_size)
@@ -68,18 +65,17 @@ void	assign_order(t_stack *stack_a, int stack_size)
 		highest = NULL;
 		while (ptr)
 		{
-			if (ptr->value == INT_MIN && ptr->order == 0)
-				ptr->order = 1;
 			if (ptr->value > value && ptr->order == 0)
 			{
 				value = ptr->value;
 				highest = ptr;
 				ptr = stack_a;
 			}
+			else if (ptr->value == INT_MIN)
+				ptr->order = 1;
 			else
 				ptr = ptr->next;
 		}
-		if (highest != NULL)
-			highest->order = stack_size;
+		highest->order = stack_size;
 	}
 }

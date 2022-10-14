@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 05:05:22 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 02:49:41 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 11:03:34 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	get_cost(t_stack **stack_a, t_stack **stack_b)
 	{
 		tmp_b->cost_b = tmp_b->index;
 		if (tmp_b->index > size_b / 2)
-			tmp_b->cost_b = (size_b - tmp_b->index) * -1;
+			tmp_b->cost_b = tmp_b->index - size_b;
 		tmp_b->cost_a = tmp_b->target_index;
 		if (tmp_b->target_index > size_a / 2)
-			tmp_b->cost_a = (size_a - tmp_b->target_index) * -1;
+			tmp_b->cost_a = tmp_b->target_index - size_a;
 		tmp_b = tmp_b->next;
 	}
 }
@@ -43,23 +43,17 @@ void	get_cost(t_stack **stack_a, t_stack **stack_b)
 static void	rotate_both(t_stack **stack_a, t_stack **stack_b, int *cost_a,
 		int *cost_b)
 {
-	if (*cost_a < 0 && *cost_b < 0)
+	while (*cost_a < 0 && *cost_b < 0)
 	{
-		while (*cost_a < 0 && *cost_b < 0)
-		{
-			(*cost_a)++;
-			(*cost_b)++;
-			rev_rotate(stack_a, stack_b, "rrr", 1);
-		}
+		(*cost_a)++;
+		(*cost_b)++;
+		rev_rotate(stack_a, stack_b, "rrr", 1);
 	}
-	else if (*cost_a > 0 && *cost_b > 0)
+	while (*cost_a > 0 && *cost_b > 0)
 	{
-		while (*cost_a > 0 && *cost_b > 0)
-		{
-			(*cost_a)--;
-			(*cost_b)--;
-			rotate(stack_a, stack_b, "rr", 1);
-		}
+		(*cost_a)--;
+		(*cost_b)--;
+		rotate(stack_a, stack_b, "rr", 1);
 	}
 }
 
@@ -98,14 +92,16 @@ void	move_cheapest(t_stack **stack_a, t_stack **stack_b)
 	int		cheapest;
 	int		cost_a;
 	int		cost_b;
+	int		total_cost;
 
 	tmp = *stack_b;
 	cheapest = INT_MAX;
 	while (tmp)
 	{
-		if (ft_abs(tmp->cost_a) + ft_abs(tmp->cost_b) < ft_abs(cheapest))
+		total_cost = ft_abs(tmp->cost_a) + ft_abs(tmp->cost_b);
+		if (total_cost < cheapest)
 		{
-			cheapest = ft_abs(tmp->cost_a) + ft_abs(tmp->cost_b);
+			cheapest = total_cost;
 			cost_a = tmp->cost_a;
 			cost_b = tmp->cost_b;
 		}

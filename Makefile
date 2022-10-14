@@ -6,12 +6,12 @@
 #    By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 22:11:09 by sciftci           #+#    #+#              #
-#    Updated: 2022/10/14 02:16:13 by sciftci          ###   ########.fr        #
+#    Updated: 2022/10/14 08:52:45 by sciftci          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -O0
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 NAME = push_swap

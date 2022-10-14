@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:46:24 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 02:17:03 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 10:58:45 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ static int	is_valid_cmd(char *cmd)
 	{
 		if (ft_strncmp("rrr", cmd, 3) == 0 || ft_strncmp("rra", cmd, 3) == 0
 			|| ft_strncmp("rrb", cmd, 3) == 0)
-		{
 			return (1);
-		}
 	}
 	else if (ft_strlen(cmd) == 3)
 	{
@@ -47,9 +45,7 @@ static int	is_valid_cmd(char *cmd)
 			|| ft_strncmp("rb", cmd, 2) == 0 || ft_strncmp("ss", cmd, 2) == 0
 			|| ft_strncmp("sa", cmd, 2) == 0 || ft_strncmp("sb", cmd, 2) == 0
 			|| ft_strncmp("pa", cmd, 2) == 0 || ft_strncmp("pb", cmd, 2) == 0)
-		{
 			return (1);
-		}
 	}
 	return (0);
 }
