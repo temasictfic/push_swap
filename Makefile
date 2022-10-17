@@ -6,7 +6,7 @@
 #    By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 22:11:09 by sciftci           #+#    #+#              #
-#    Updated: 2022/10/09 22:11:09 by sciftci          ###   ########.fr        #
+#    Updated: 2022/10/17 20:07:28 by sciftci          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,33 +16,34 @@ RM = rm -f
 
 NAME = push_swap
 NAME_CHECKER = checker
+NAME_VIS = vis
 
 SRCS = 	push_swap.c input_check.c index.c sort.c stack.c fill_order.c cost_move.c instructions.c utils.c
-BSRC =  checker.c push_swap_check.c instructions.c sort_utils.c get_next_line.c
-
-OBJS = $(SRCS:.c=.o)
-BOBJS = $(BSRC:.c=.o)
+BSRCS = checker.c fill_order.c instructions.c stack.c utils.c input_check.c gnl/*bonus.c
+VSRCS = vis.c stack.c input_check.c fill_order.c utils.c instructions.c gnl/*bonus.c
 
 all: ${NAME}
 
 bonus: ${NAME} ${NAME_CHECKER}
 
-${NAME}: $(OBJS)
-	${CC} ${CFLAGS} -o $@ $(OBJS) 
+${NAME}:
+	${CC} ${CFLAGS} ${SRCS} -o ${NAME}
 
-${NAME_CHECKER}: $(BOBJS) libft
-	${CC} ${CFLAGS} -o $@ $(BOBJS) -Llibft -lft
+${NAME_CHECKER}:
+	${CC} ${CFLAGS} ${BSRCS} -o ${NAME_CHECKER}
 
-libft:
-	make -C libft bonus
+vis: 
+	${CC} ${CFLAGS} ${VSRCS} -o ${NAME_VIS}
 
 clean:
-	$(RM) $(OBJS) $(BOBJS)
-	make -C libft clean
 
 fclean: clean
-	$(RM) ${NAME} ${NAME_CHECKER} libft/libft.a
+	$(RM) ${NAME} ${NAME_CHECKER} ${NAME_VIS}
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+reb: fclean bonus
+
+rev: fclean vis
+
+.PHONY: all bonus vis clean fclean re reb rev

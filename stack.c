@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 04:19:43 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/08 04:19:43 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/10 20:41:36 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_stack	*get_stack_bottom(t_stack *stack)
 
 t_stack	*get_stack_before_bottom(t_stack *stack)
 {
-	while (stack && stack->next->next != NULL)
+	while (stack && stack->next && stack->next->next != NULL)
 		stack = stack->next;
 	return (stack);
 }
@@ -30,7 +30,7 @@ t_stack	*stack_new(int value)
 {
 	t_stack	*new;
 
-	new = malloc(sizeof * new);
+	new = malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->value = value;
@@ -58,8 +58,7 @@ void	stack_add_bottom(t_stack **stack, t_stack *new)
 	tail->next = new;
 }
 
-
-int	get_stack_size(t_stack	*stack)
+int	get_stack_size(t_stack *stack)
 {
 	int	size;
 

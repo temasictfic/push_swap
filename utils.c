@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:48:09 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/08 01:48:09 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/14 09:02:51 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	free_stack(t_stack **stack)
 		free(*stack);
 		*stack = tmp;
 	}
-	free(stack);
 }
 
 int	is_sorted(t_stack *stack)
@@ -55,7 +54,10 @@ long int	ft_atoi(const char *str)
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
-		num = (num * 10) + (str[i++] - '0');
+	{
+		num = (num * 10) + (str[i] - '0');
+		i++;
+	}
 	return (num * sign);
 }
 
