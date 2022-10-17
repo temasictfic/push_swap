@@ -6,7 +6,7 @@
 #    By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 22:11:09 by sciftci           #+#    #+#              #
-#    Updated: 2022/10/14 08:52:45 by sciftci          ###   ########.fr        #
+#    Updated: 2022/10/17 15:34:07 by sciftci          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME_VIS = vis
 
 SRCS = 	push_swap.c input_check.c index.c sort.c stack.c fill_order.c cost_move.c instructions.c utils.c
 BSRCS = checker.c fill_order.c instructions.c stack.c utils.c input_check.c gnl/*c
-VSRCS = vis.c stack.c input_check.c fill_order.c utils.c instructions.c gnl/*.c
+VSRCS = vis.c stack.c input_check.c fill_order.c utils.c instructions.c gnl/*bonus.c
 
 all: ${NAME}
 
@@ -32,7 +32,7 @@ ${NAME}:
 ${NAME_CHECKER}:
 	${CC} ${CFLAGS} ${BSRCS} -o ${NAME_CHECKER}
 
-vis:
+vis: 
 	${CC} ${CFLAGS} ${VSRCS} -o ${NAME_VIS}
 
 clean:
