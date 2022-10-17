@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 03:23:39 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 11:35:22 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/17 23:41:05 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,18 @@ void	assign_order(t_stack *stack_a, int stack_size)
 		highest = NULL;
 		while (ptr)
 		{
+			if (ptr->value == INT_MIN && ptr->order == 0)
+				ptr->order = 1;
 			if (ptr->value > value && ptr->order == 0)
 			{
 				value = ptr->value;
 				highest = ptr;
 				ptr = stack_a;
 			}
-			else if (ptr->value == INT_MIN)
-				ptr->order = 1;
 			else
 				ptr = ptr->next;
 		}
-		highest->order = stack_size;
+		if (highest != NULL)
+			highest->order = stack_size;
 	}
 }
