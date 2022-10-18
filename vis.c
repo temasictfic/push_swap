@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:16:27 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/17 17:16:47 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/18 03:07:05 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,24 @@ char	*ft_itoa(int n)
 	return (array);
 }
 
-char	*fields(t_stack *stack_b, int field_num)
+char	*fields(t_stack *stack, int field_num)
 {
-	if (stack_b)
+	if (stack)
 	{
 		if (field_num == 0)
-			return (ft_itoa(stack_b->value));
+			return (ft_itoa(stack->value));
 		else if (field_num == 1)
-			return (ft_itoa(stack_b->order));
+			return (ft_itoa(stack->order));
 		else if (field_num == 2)
-			return (ft_itoa(stack_b->index));
+			return (ft_itoa(stack->index));
 		else if (field_num == 3)
-			return (ft_itoa(stack_b->target_index));
+			return (ft_itoa(stack->target_index));
+		else if (field_num == 4)
+			return (ft_itoa(stack->cost_a));
+		else if (field_num == 5)
+			return (ft_itoa(stack->cost_b));
+		else if (field_num == 6)
+			return (ft_itoa(ft_abs(stack->cost_b) + ft_abs(stack->cost_a)));
 	}
 	return ("");
 }
@@ -118,7 +124,9 @@ int	main(int ac, char **av)
 	char	*cmd;
 	char	*new_line;
 	int		fd;
+	int		flag;
 
+	flag = 0;
 	cmd = NULL;
 	if (ac < 2)
 		return (0);
@@ -132,25 +140,32 @@ int	main(int ac, char **av)
 	do
 	{
 		execute_cmd(&stack_a, &stack_b, cmd);
+		if (get_stack_size(stack_a) == 3 && is_sorted(stack_a))
+			flag = 1;
+		if (flag && get_stack_size(stack_b) > 0)
+		{
+			assign_target_index(&stack_a, &stack_b);
+			get_cost(&stack_a, &stack_b);
+		}
 		tmp_a = stack_a;
 		tmp_b = stack_b;
 		if (cmd)
-			printf("%39s\n", cmd);
-		printf("\nvalue          order     index             value          order     index    target_index");
-		printf("\n-----------    -----     -----             -----------    -----     -----    ------------\n\n");
+			printf("%38s\n", cmd);
+		printf("\nvalue          order     index             value          order     index    target_index    cost_a    cost_b    total_cost");
+		printf("\n-----------    -----     -----             -----------    -----     -----    ------------    ------    ------    ----------\n\n");
 		while (tmp_a || tmp_b)
 		{
 			printf("%-11s    <%4s>    [%4s]            ", fields(tmp_a, 0),
 					fields(tmp_a, 1), fields(tmp_a, 2));
-			printf("%-11s    <%4s>    [%4s]    [> %4s <]\n\n", fields(tmp_b, 0),
-					fields(tmp_b, 1), fields(tmp_b, 2), fields(tmp_b, 3));
+			printf("%-11s     <%4s>    [%4s]    [> %4s <]     $%4s     $%4s     $%4s\n\n", fields(tmp_b, 0),
+					fields(tmp_b, 1), fields(tmp_b, 2), fields(tmp_b, 3), fields(tmp_b, 4), fields(tmp_b, 5), fields(tmp_b, 6));
 			if (tmp_a)
 				tmp_a = tmp_a->next;
 			if (tmp_b)
 				tmp_b = tmp_b->next;
 		}
-		printf("_______________________________            ______________________________________________\n");
-		printf("stack_a                                                                           stack_b\n");
+		printf("_______________________________            __________________________________________________________________________________\n");
+		printf("stack_a                                                                                                               stack_b\n");
 		cmd = get_next_line(fd);
 		new_line = get_next_line(0);
 	} while (new_line[0] == '\n' && !(is_sorted(stack_a) && get_stack_size(stack_b) == 0));
