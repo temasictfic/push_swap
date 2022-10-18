@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 21:44:17 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 01:31:15 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/18 09:57:37 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void				sort(t_stack **stack_a, t_stack **stack_b);
 
 /* Index */
 
+void				get_index(t_stack **stack);
 int					get_lowest_order_index(t_stack **stack);
 void				assign_target_index(t_stack **stack_a, t_stack **stack_b);
 

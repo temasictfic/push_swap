@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 02:44:50 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 12:00:29 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/18 09:56:40 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **		order:		[3]	[1]	[4]	[2]
 **		index:		<0>	<1>	<2>	<3>
 */
-static void	get_index(t_stack **stack)
+void	get_index(t_stack **stack)
 {
 	t_stack	*tmp;
 	int		i;

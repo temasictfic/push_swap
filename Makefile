@@ -6,7 +6,7 @@
 #    By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 22:11:09 by sciftci           #+#    #+#              #
-#    Updated: 2022/10/18 01:49:55 by sciftci          ###   ########.fr        #
+#    Updated: 2022/10/18 09:46:46 by sciftci          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ ${NAME}:
 ${NAME_CHECKER}:
 	${CC} ${CFLAGS} ${BSRCS} -o ${NAME_CHECKER}
 
-vis: 
+vis: ${NAME} ${NAME_CHECKER}
 	${CC} ${CFLAGS} ${VSRCS} -o ${NAME_VIS}
 
 clean:

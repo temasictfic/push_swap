@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:16:27 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/18 08:58:17 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/18 10:01:56 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,9 @@ int	main(int ac, char **av)
 	char	*new_line;
 	int		fd;
 	int		flag;
+	int 	i;
 
+	i = 0;
 	flag = 0;
 	cmd = NULL;
 	if (ac < 2)
@@ -147,10 +149,12 @@ int	main(int ac, char **av)
 			assign_target_index(&stack_a, &stack_b);
 			get_cost(&stack_a, &stack_b);
 		}
+		if (flag && get_stack_size(stack_b) == 0)
+			get_index(&stack_a);
 		tmp_a = stack_a;
 		tmp_b = stack_b;
 		if (cmd)
-			printf("%39s\n", cmd);
+			printf("#%d %39s\n", ++i, cmd);
 		printf("\nvalue          order     index             value          order     index    target_index    cost_a    cost_b    total_cost");
 		printf("\n-----------    -----     -----             -----------    -----     -----    ------------    ------    ------    ----------\n\n");
 		while (tmp_a || tmp_b)
