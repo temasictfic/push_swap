@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:16:27 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/18 03:07:05 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/18 08:58:17 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,14 +150,14 @@ int	main(int ac, char **av)
 		tmp_a = stack_a;
 		tmp_b = stack_b;
 		if (cmd)
-			printf("%38s\n", cmd);
+			printf("%39s\n", cmd);
 		printf("\nvalue          order     index             value          order     index    target_index    cost_a    cost_b    total_cost");
 		printf("\n-----------    -----     -----             -----------    -----     -----    ------------    ------    ------    ----------\n\n");
 		while (tmp_a || tmp_b)
 		{
 			printf("%-11s    <%4s>    [%4s]            ", fields(tmp_a, 0),
 					fields(tmp_a, 1), fields(tmp_a, 2));
-			printf("%-11s     <%4s>    [%4s]    [> %4s <]     $%4s     $%4s     $%4s\n\n", fields(tmp_b, 0),
+			printf("%-11s    <%4s>    [%4s]    [> %4s <]     $%4s     $%4s     $%4s\n\n", fields(tmp_b, 0),
 					fields(tmp_b, 1), fields(tmp_b, 2), fields(tmp_b, 3), fields(tmp_b, 4), fields(tmp_b, 5), fields(tmp_b, 6));
 			if (tmp_a)
 				tmp_a = tmp_a->next;
