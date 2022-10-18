@@ -6,13 +6,13 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:46:24 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/14 10:58:45 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/18 13:57:48 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl/get_next_line.h"
 #include "push_swap.h"
-
+#include "stdio.h"
 static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	cursor;
@@ -78,22 +78,22 @@ static void	execute_cmd(t_stack **stack_a, t_stack **stack_b, char *cmd)
 		push(stack_a, stack_b, NULL);
 }
 
-static void	wait_for_input(t_stack *stack_a, t_stack *stack_b)
+static void	wait_for_input(t_stack **stack_a, t_stack **stack_b)
 {
 	char	*inst;
 
 	while (1)
 	{
 		inst = get_next_line(STDIN_FILENO);
-		if (!inst && !(is_sorted(stack_a) && get_stack_size(stack_b) == 0))
+		if (!inst && !(is_sorted(*stack_a) && get_stack_size(*stack_b) == 0))
 		{
 			ft_putstr("KO\n");
 			break ;
 		}
 		else if (!is_valid_cmd(inst))
-			exit_error(&stack_a, &stack_b);
-		execute_cmd(&stack_a, &stack_b, inst);
-		if (!inst && is_sorted(stack_a) && get_stack_size(stack_b) == 0)
+			exit_error(stack_a, stack_b);
+		execute_cmd(stack_a, stack_b, inst);
+		if (!inst && is_sorted(*stack_a) && get_stack_size(*stack_b) == 0)
 		{
 			ft_putstr("OK\n");
 			break ;
@@ -113,8 +113,9 @@ int	main(int ac, char **av)
 		exit_error(NULL, NULL);
 	stack_a = fill_stack_a(ac, av);
 	stack_b = NULL;
-	wait_for_input(stack_a, stack_b);
+	wait_for_input(&stack_a, &stack_b);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
+	system("leaks checker");
 	return (0);
 }
