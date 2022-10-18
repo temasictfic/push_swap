@@ -6,13 +6,13 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:46:24 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/18 13:57:48 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/18 14:20:14 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl/get_next_line.h"
 #include "push_swap.h"
-#include "stdio.h"
+
 static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	cursor;
@@ -116,6 +116,5 @@ int	main(int ac, char **av)
 	wait_for_input(&stack_a, &stack_b);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
-	system("leaks checker");
 	return (0);
 }
