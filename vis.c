@@ -6,7 +6,7 @@
 /*   By: sciftci <sciftci@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:16:27 by sciftci           #+#    #+#             */
-/*   Updated: 2022/10/18 10:01:56 by sciftci          ###   ########.fr       */
+/*   Updated: 2022/10/18 10:13:02 by sciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	stack_size = get_stack_size(stack_a);
 	assign_order(stack_a, stack_size + 1);
-	fd = open("ps.txt", O_RDONLY);
+	fd = open("ps.txt", O_RDONLY | O_CREAT);
 	do
 	{
 		execute_cmd(&stack_a, &stack_b, cmd);
@@ -154,7 +154,7 @@ int	main(int ac, char **av)
 		tmp_a = stack_a;
 		tmp_b = stack_b;
 		if (cmd)
-			printf("#%d %39s\n", ++i, cmd);
+			printf("#%d %35s\n", ++i, cmd);
 		printf("\nvalue          order     index             value          order     index    target_index    cost_a    cost_b    total_cost");
 		printf("\n-----------    -----     -----             -----------    -----     -----    ------------    ------    ------    ----------\n\n");
 		while (tmp_a || tmp_b)
